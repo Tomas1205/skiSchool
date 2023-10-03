@@ -8,6 +8,6 @@ public class SkiSchoolApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SkiSchoolApplication.class, args);
-	}
-
+		System.out.println("Hello world!");
+	}	
 }
