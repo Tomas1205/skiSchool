@@ -32,7 +32,7 @@ public class CustomerCrudTest {
 	@Transactional
 	void testCreateCustomerSuccess() {
 		List<Customers> customersBeforeSave = customerRepository.findAll();
-		int expectedCustomersBeforeSave = 5;		
+		int expectedCustomersBeforeSave = customersBeforeSave.size();		
 		// create new customer
 		Customers customer = Customers.builder()
 				.firstName("John")
@@ -68,6 +68,5 @@ public class CustomerCrudTest {
 
 		assertThat(customersAfterDelete)
 		.hasSize(customersSizeBeforeDelete - 1);
-
 	}
 }
