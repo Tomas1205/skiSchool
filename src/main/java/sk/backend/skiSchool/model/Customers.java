@@ -10,17 +10,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "customers")
-@ToString
-@Getter
-@Setter
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
+@Entity @Table(name = "customers")
+@ToString
+@Getter @Setter 
+@AllArgsConstructor @NoArgsConstructor
+@Builder
 public class Customers {
     @Id
     @Column(name = "customer_id", updatable = false, nullable = false, columnDefinition = "uuid")
@@ -41,5 +44,4 @@ public class Customers {
 
     @Column(name = "Phone")
     private String phone;
-
 }
