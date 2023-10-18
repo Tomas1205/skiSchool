@@ -1,5 +1,6 @@
 package sk.backend.skiSchool.model;
 
+import java.util.Set;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -7,10 +8,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor; 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,4 +52,7 @@ public class Instructors {
 
     @Column(name = "qualificationlevel")
     private int qualificationLevel;
+
+    @ManyToMany(mappedBy = "instructors")
+    private Set<Lessons> lessons;
 };
