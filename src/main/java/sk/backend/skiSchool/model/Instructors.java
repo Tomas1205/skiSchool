@@ -17,10 +17,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity @Table(name = "instructors")
-@ToString
 @Getter @Setter
 @NoArgsConstructor 
 @AllArgsConstructor
@@ -55,4 +53,15 @@ public class Instructors {
 
     @ManyToMany(mappedBy = "instructors")
     private Set<Lessons> lessons;
+
+    @Override
+    public String toString() {
+        return "Instructor ID: " + instructor_id + "\n" +
+                "First name: " + firstName + "\n" +
+                "Last name: " + lastName + "\n" +
+                "Email: " + email + "\n" +
+                "Phone: " + phone + "\n" +
+                "Qualification type: " + qualificationType + "\n" +
+                "Qualification level: " + qualificationLevel + "\n";
+    }
 };

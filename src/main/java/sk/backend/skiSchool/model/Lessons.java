@@ -15,14 +15,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import java.time.ZonedDateTime;
 
 import java.util.Set;
 
 @Entity @Table(name = "lessons")
 @AllArgsConstructor @NoArgsConstructor
-@ToString @Getter @Setter
+@Getter @Setter
 @Builder
 public class Lessons {
 
@@ -37,7 +36,7 @@ public class Lessons {
 
     @Column(name="lessonlevel", nullable = false)
     @NotBlank(message = "Lesson level is mandatory")
-    private String lessonLevel;
+    private int lessonLevel;
 
     @Column(name="starttime", nullable = false)
     @NotBlank(message = "Start time is mandatory")
@@ -60,5 +59,16 @@ public class Lessons {
             joinColumns = @JoinColumn(name = "lesson_id"),
             inverseJoinColumns = @JoinColumn(name = "instructor_id"))
     private Set<Instructors> instructors;
+
+    @Override
+    public String toString(){
+        return "Lesson ID: " + lesson_id + "\n" +
+                "Lesson type: " + lessonType + "\n" +
+                "Lesson level: " + lessonLevel + "\n" +
+                "Start time: " + startTime + "\n" +
+                "End time: " + endTime + "\n" +
+                "Max capacity: " + maxCapacity + "\n" +
+                "Price: " + price + "\n";
+    }
     
 }
