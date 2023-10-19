@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -53,6 +54,9 @@ public class Lessons {
     @Column(name="price", nullable = false)
     @NotBlank(message = "Price is mandatory")
     private double price;
+
+    @OneToMany
+    private Set<Reservations> reservations;
 
     @ManyToMany
     @JoinTable(name = "lessons_instructors",

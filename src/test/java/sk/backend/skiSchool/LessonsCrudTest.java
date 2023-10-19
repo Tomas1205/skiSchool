@@ -57,8 +57,7 @@ public class LessonsCrudTest {
     void deleteLessonSuccess() {
         // delete lesson and test if it was deleted from database
         int sizeBeforeDelete = lessonsRepository.findAll().size();
-
-        System.out.println(lessonsRepository.findAll().get(0).getInstructors());
+        
         lessonsRepository.deleteById(lessonsRepository.findAll().get(0).getLesson_id());
 
         assertThat(lessonsRepository.findAll())

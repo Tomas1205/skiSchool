@@ -1,6 +1,7 @@
 package sk.backend.skiSchool.model;
 
 
+import java.util.Set;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -8,11 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -20,7 +21,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 @Entity @Table(name = "customers")
-@ToString
 @Getter @Setter 
 @AllArgsConstructor @NoArgsConstructor
 @Builder
@@ -44,4 +44,17 @@ public class Customers {
 
     @Column(name = "Phone")
     private String phone;
+
+    @OneToMany(mappedBy = "customers")
+    private Set<Reservations> reservations;
+
+    @Override
+    public String toString() {
+        return "Customer ID: " + customer_id + "\n" +
+                "First name: " + firstName + "\n" +
+                "Last name: " + lastName + "\n" +
+                "Email: " + email + "\n" +
+                "Phone: " + phone + "\n";
+    }
+
 }
