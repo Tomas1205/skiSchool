@@ -36,7 +36,7 @@ public class Reservations {
     @NotBlank(message = "Lesson ID is mandatory")
     private Long lesson_id;
 
-    @Column(name = "purchasetime", nullable = false)
+    @Column(name = "purchasetime")
     private ZonedDateTime purchaseTime;
 
     @Column(name = "status", nullable = false)

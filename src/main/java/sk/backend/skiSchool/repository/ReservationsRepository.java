@@ -5,7 +5,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import sk.backend.skiSchool.model.Reservations;
 
-@RepositoryRestResource(path = "reservations")
+@RepositoryRestResource(exported = false)
 public interface ReservationsRepository extends JpaRepository<Reservations, Long> {
     
 }
