@@ -65,13 +65,12 @@ public class LessonsServices {
                 log.info("Lesson overlaps with another lesson");
                 throw new IllegalArgumentException("Lesson overlaps with another lesson");
             }
-        }
-            
+        }       
                
 
         try {
             log.info("Creating lesson");
-            Lessons newLesson = Lessons.builder()
+            Lessons = Lessons.builder()
                 .lessonType(lessonType)
                 .lessonLevel(lessonLevel)
                 .maxCapacity(capacity)
