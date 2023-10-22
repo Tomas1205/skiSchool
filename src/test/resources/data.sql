@@ -32,3 +32,16 @@ VALUES
     ('4fd4c523-c178-55ea-94d9-a67045029162', 3),
     ('3fd4c523-c178-55ea-94d9-a67045029162', 4),
     ('2fd4c523-c178-55ea-94d9-a67045029162', 5);
+
+INSERT INTO public.reservations (customer_id, lesson_id, purchasetime, status)
+VALUES
+  ('6fd4b523-c145-55ea-94d9-a67045029162', 1, current_timestamp, 'active'),
+  ('5fd4c523-c178-55ea-94d9-a67045029162', 2, current_timestamp, 'active'),
+  ('4fd4c523-c178-55ea-94d9-a67045029162', 3, current_timestamp, 'active'),
+  ('3fd4c523-c178-55ea-94d9-a67045029162', 4, current_timestamp, 'canceled'),
+  ('2fd4c523-c178-55ea-94d9-a67045029162', 5, current_timestamp, 'canceled'),
+  ('6fd4b523-c145-55ea-94d9-a67045029162', 6, current_timestamp, 'active'),
+  ('5fd4c523-c178-55ea-94d9-a67045029162', 7, current_timestamp, 'active'),
+  ('4fd4c523-c178-55ea-94d9-a67045029162', 8, current_timestamp, 'canceled'),
+  ('3fd4c523-c178-55ea-94d9-a67045029162', 9, current_timestamp, 'canceled'),
+  ('2fd4c523-c178-55ea-94d9-a67045029162', 10, current_timestamp, 'active');
