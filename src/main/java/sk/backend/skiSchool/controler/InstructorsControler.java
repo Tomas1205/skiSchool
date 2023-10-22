@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
 import sk.backend.skiSchool.model.Instructors;
 import sk.backend.skiSchool.services.InstructorsServices;
 
 @RestController
 @RequestMapping(value = "/api/v1/instructors")
+@Slf4j
 public class InstructorsControler {
 
     @Autowired
@@ -26,22 +28,7 @@ public class InstructorsControler {
         @RequestParam String phone, 
         @RequestParam String qualificationType,
         @RequestParam int qualificationLevel) {
-
-        if (firstName == null || firstName.isEmpty()) {
-            return ResponseEntity.status(Response.SC_BAD_REQUEST).body("Missing first name");
-        }
-        if (lastName == null || lastName.isEmpty()) {
-            return ResponseEntity.status(Response.SC_BAD_REQUEST).body("Missing last name");
-        }
-        if ((email == null || email.isEmpty()) && (phone == null || phone.isEmpty())) {
-            return ResponseEntity.status(Response.SC_BAD_REQUEST).body("Missing email or phone");
-        }
-        if (qualificationType == null || qualificationType.isEmpty()) {
-            return ResponseEntity.status(Response.SC_BAD_REQUEST).body("Missing qualification type");
-        }
-        if (qualificationLevel < 1 || qualificationLevel > 3) {
-            return ResponseEntity.status(Response.SC_BAD_REQUEST).body("Missing qualification level");
-        }
+            log.info("Creating instructor with first name: " + firstName + ", last name: " + lastName + ", email: " + email + ", phone: " + phone + ", qualification type: " + qualificationType + ", qualification level: " + qualificationLevel);
 
         try {
             Instructors newInstructor = Instructors.builder()

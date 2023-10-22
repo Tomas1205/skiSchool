@@ -27,17 +27,6 @@ public class CustomersControler {
         
         log.info("Creating customer with first name: " + firstName + ", last name: " + lastName + ", email: " + email + ", phone: " + phone);
         
-        if (firstName == null || firstName.isEmpty()) {
-            log.info("Missing first name" + firstName);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing first name");
-        }
-        if (lastName == null || lastName.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing last name");
-        }
-        if ((email == null || email.isEmpty()) && (phone == null || phone.isEmpty())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing email or phone");
-        }
-
         try {
             customerServices.createCustomer(Customers.builder()
                 .firstName(firstName)
