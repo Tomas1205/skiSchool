@@ -2,6 +2,7 @@ package sk.backend.skiSchool.services;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -56,8 +57,7 @@ public class LessonsServices {
         log.info("Instructor id: " + instructor_id);
 
         Set<Lessons> instructorLessons = lessonsRepository.findAllByInstructorId(instructor_id);
-        Optional<Instructors> instructor = instructorsRepository.findById(instructor_id);
-        
+        Optional<Instructors> instructor = instructorsRepository.findById(instructor_id);       
         
 
         
@@ -98,10 +98,16 @@ public class LessonsServices {
         return true;
     }
 
+    public List<Lessons> getAllLessons() {
+        return lessonsRepository.findAll();
+    }
+
     private boolean lessonOverlap(ZonedDateTime startTime, ZonedDateTime endTime, ZonedDateTime otherStartTime, ZonedDateTime otherEndTime) {
         boolean isOverlap = (startTime.isBefore(otherEndTime) || startTime.isEqual(otherEndTime)) &&
                             (endTime.isAfter(otherStartTime) || endTime.isEqual(otherStartTime));
         log.info("Is overlap: " + isOverlap);    
         return isOverlap;
-    }   
+    }
+    
+    
 }

@@ -1,10 +1,12 @@
 package sk.backend.skiSchool.controler;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +28,16 @@ public class LessonsControler {
             return ResponseEntity.badRequest().body("Error while creating lesson");
         }
     }
+
+    @GetMapping(value = "/getAllLessons")
+    public ResponseEntity<List> getAllLessons() {
+        try {
+            return ResponseEntity.ok(lessonsServices.getAllLessons());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(List.of("Error while getting all lessons. Error: " + e.getMessage()));
+        }
+    }
+
     
     
 }

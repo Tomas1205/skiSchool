@@ -2,6 +2,7 @@ package sk.backend.skiSchool.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +20,9 @@ import lombok.Setter;
 import java.time.ZonedDateTime;
 
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity @Table(name = "lessons")
 @AllArgsConstructor @NoArgsConstructor
@@ -55,10 +59,12 @@ public class Lessons {
     @NotBlank(message = "Price is mandatory")
     private double price;
 
-    @OneToMany
+    @OneToMany(mappedBy = "lessons", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Reservations> reservations;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "lessons_instructors",
             joinColumns = @JoinColumn(name = "lesson_id"),
             inverseJoinColumns = @JoinColumn(name = "instructor_id"))

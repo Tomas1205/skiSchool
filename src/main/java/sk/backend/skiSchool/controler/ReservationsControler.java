@@ -45,12 +45,17 @@ public class ReservationsControler {
     public ResponseEntity<String> cancelReservation(@PathVariable Long reservationId) {
         log.info("Cancelling reservation with ID: " + reservationId);
         try {
-            reservationsServices.cancelReservation(reservationId);
+            boolean wasCanceled = reservationsServices.cancelReservation(reservationId);
+            if (wasCanceled){
+                return ResponseEntity.status(HttpStatus.OK).body("Reservation cancelled");
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Reservation was already cancelled");
+            }
+
         } catch (Exception e) {
             log.info("Error while cancelling reservation. Error: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while cancelling reservation. Error: " + e.getMessage());
-        }
-        return ResponseEntity.status(HttpStatus.OK).body("Reservation cancelled");   
+        }  
     }
     
 }
